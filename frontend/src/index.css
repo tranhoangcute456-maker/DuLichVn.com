@@ -1,0 +1,63 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary-green: #2F5C3E;
+  --color-light-green: #487A57;
+  --color-bg-cream: #FAF8F5; /* Khôi phục nền kem ấm */
+  --color-text-dark: #333333; /* Chữ xám đậm dễ nhìn hơn đen tuyền */
+  --color-text-light: #666666;
+  --color-white: #ffffff;
+  --color-gold: #D4AF37; /* Khôi phục Vàng Gold rực rỡ */
+  --color-gold-light: #F0E2B6;
+  
+  --color-moss-green: #2F5C3E;
+  --color-moss-dark: #1A3636;
+  --color-moss-deep: #0D1A13; /* Xanh rêu gần như đen cho Footer/Contact */
+  --color-earth: #C27A5B; /* Tông Cam Đất (Terracotta) tạo điểm nhấn ấm áp */
+
+  --font-heading: 'Playfair Display', serif;
+  --font-sans: 'Poppins', sans-serif;
+}
+
+html, body, #root {
+  background-color: #0A241A;
+  color: var(--color-text-dark);
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  width: 100%;
+  font-family: var(--font-sans);
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+/* Ép tất cả class font cũ sang Playfair Display để đồng bộ Cinematic */
+h1, h2, h3, h4, h5, h6, .font-dancing, .font-allura {
+  font-family: var(--font-heading) !important;
+}
+
+/* Scrollbar Premium */
+::-webkit-scrollbar { width: 5px; } 
+::-webkit-scrollbar-track { background: #111; }
+::-webkit-scrollbar-thumb { background: var(--color-primary-green); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-gold); }
+
+/* Glass Navbar (Tối giản, viền siêu mỏng) */
+.glass {
+  background: rgba(10, 10, 10, 0.6);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  color: white;
+}
+
+/* Cinematic Utilities */
+.cinematic-shadow {
+  box-shadow: 0 30px 60px -10px rgba(0,0,0,0.4);
+}
+.glow-effect {
+  box-shadow: 0 0 20px rgba(197, 160, 89, 0.4);
+}
+.glow-effect:hover {
+  box-shadow: 0 0 30px rgba(197, 160, 89, 0.8);
+}
