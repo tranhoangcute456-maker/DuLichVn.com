@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://danganhkhoak37-alt.github.io/dulich-vietnam/",
+  "homepage": "https://tranhoangcute456-maker.github.io/DuLichVn.com/",
   "scripts": {
     "dev": "concurrently \"vite\" \"npm run server\"",
     "server": "node backend/server.js",
