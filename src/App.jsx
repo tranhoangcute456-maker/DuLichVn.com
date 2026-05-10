@@ -10,24 +10,24 @@ import Profile from './pages/Profile';
 import News from './pages/News';
 
 function App() {
-    return (
-          <Router basename="/DuLichVn.com">
-                <div className="min-h-screen bg-bg-cream flex flex-col font-sans">
-                        <Navbar />
-                        <main className="flex-grow">
-                                  <Routes>
-                                              <Route path="/" element={<Home />} />
-                                              <Route path="/suggestions" element={<Suggestions />} />
-                                              <Route path="/guide" element={<Guide />} />
-                                              <Route path="/community" element={<Community />} />
-                                              <Route path="/news" element={<News />} />
-                                              <Route path="/profile" element={<Profile />} />
-                                  </Routes>
-                        </main>
-                        <Footer />
-                </div>
-          </Router
-        );
+      return (
+              <Router basename="/DuLichVn.com">
+                    <div className="min-h-screen bg-bg-cream flex flex-col font-sans">
+                            <Navbar />
+                            <main className="flex-grow">
+                                      <Routes>
+                                                  <Route path="/" element={<Home />}
+                                                  <Route path="/suggestions" element={<Suggestions />}
+                                                  <Route path="/guide" element={<Guide />}
+                                                  <Route path="/community" element={<Community />}
+                                                  <Route path="/news" element={<News />}
+                                                  <Route path="/profile" element={<Profile />}
+                                      </Routes>
+                            </main>
+                            <Footer />
+                    </div>
+              </Router>
+            );
 }
 
 export default App;
