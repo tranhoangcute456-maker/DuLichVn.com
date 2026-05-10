@@ -283,7 +283,8 @@ app.put('/api/profile/:id', async (req, res) => {
 app.post('/api/upload/avatar/:id', upload.single('avatar'), async (req, res) => {
   if (!req.file) return res.status(400).json({ status: 'error', message: 'Không có file được tải lên' });
   try {
-    const avatarUrl = `http://localhost:5000/uploads/${req.file.filename}`;
+    const baseUrl = `${req.protocol}://${req.get('host')}`;
+    const avatarUrl = `${baseUrl}/uploads/${req.file.filename}`;
     await db.run('UPDATE users SET avatar_url=? WHERE id=?', [avatarUrl, req.params.id]);
     res.json({ status: 'success', avatar_url: avatarUrl });
   } catch (err) {
@@ -295,7 +296,8 @@ app.post('/api/upload/avatar/:id', upload.single('avatar'), async (req, res) => 
 app.post('/api/upload/cover/:id', upload.single('cover'), async (req, res) => {
   if (!req.file) return res.status(400).json({ status: 'error', message: 'Không có file được tải lên' });
   try {
-    const coverUrl = `http://localhost:5000/uploads/${req.file.filename}`;
+    const baseUrl = `${req.protocol}://${req.get('host')}`;
+    const coverUrl = `${baseUrl}/uploads/${req.file.filename}`;
     await db.run('UPDATE users SET cover_url=? WHERE id=?', [coverUrl, req.params.id]);
     res.json({ status: 'success', cover_url: coverUrl });
   } catch (err) {
@@ -307,7 +309,8 @@ app.post('/api/upload/cover/:id', upload.single('cover'), async (req, res) => {
 app.post('/api/upload/post', upload.single('post_image'), async (req, res) => {
   if (!req.file) return res.status(400).json({ status: 'error', message: 'Không có file được tải lên' });
   try {
-    const imageUrl = `http://localhost:5000/uploads/${req.file.filename}`;
+    const baseUrl = `${req.protocol}://${req.get('host')}`;
+    const imageUrl = `${baseUrl}/uploads/${req.file.filename}`;
     res.json({ status: 'success', image_url: imageUrl });
   } catch (err) {
     res.status(500).json({ status: 'error', message: err.message });
@@ -612,4 +615,5 @@ app.get('/api/travel-suggestions', (req, res) => {
 
 app.use((req, res) => res.status(404).json({ message: 'Route không tồn tại' }));
 
-app.listen(5000, () => console.log('🚀 ExploreVN Backend đang chạy tại http://localhost:5000'));
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`🚀 ExploreVN Backend đang chạy tại port ${PORT}`));

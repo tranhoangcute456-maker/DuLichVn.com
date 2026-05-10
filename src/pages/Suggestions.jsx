@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
+import { API_URL } from '../config/api';
 import LocationCard from '../components/LocationCard';
 import AuthModal from '../components/AuthModal';
 
@@ -114,7 +115,7 @@ function Suggestions() {
       }
 
       // 1. Fetch từ Backend (15 địa điểm nổi bật)
-      const res = await fetch(`http://localhost:5000/api/travel-suggestions?userLat=${fetchLat}&userLng=${fetchLon}&currentMonth=${selectedMonth}`);
+      const res = await fetch(`${API_URL}/api/travel-suggestions?userLat=${fetchLat}&userLng=${fetchLon}&currentMonth=${selectedMonth}`);
       const result = await res.json();
       let combinedResults = result.data || [];
 

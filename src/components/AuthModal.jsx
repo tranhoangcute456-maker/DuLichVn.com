@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { GOOGLE_CLIENT_ID, FACEBOOK_APP_ID } from '../config/oauth';
+import { API_URL } from '../config/api';
 
 const TRAVEL_IMAGES = [
   'https://images.unsplash.com/photo-1528127269322-539801943592?q=80&w=800',
@@ -48,7 +49,7 @@ function AuthModal({ isOpen, onClose, onAuthSuccess, defaultTab }) {
 
   // ─── OAuth helpers ───────────────────────────────────────────
   const callBackend = async (endpoint, body) => {
-    const res = await fetch(`http://localhost:5000${endpoint}`, {
+    const res = await fetch(`${API_URL}${endpoint}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(body),

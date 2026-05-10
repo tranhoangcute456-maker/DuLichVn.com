@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { API_URL } from '../config/api';
 
 // No mock posts anymore
 
@@ -57,7 +58,7 @@ function PostCard({ post }) {
   const fetchComments = async () => {
     setLoadingComments(true);
     try {
-      const res = await fetch(`http://localhost:5000/api/posts/${post.id}/comments`);
+      const res = await fetch(`${API_URL}/api/posts/${post.id}/comments`);
       const data = await res.json();
       setComments(data);
     } catch (err) {
@@ -70,7 +71,7 @@ function PostCard({ post }) {
   const handlePostComment = async () => {
     if (!loggedInUser || !newComment.trim()) return;
     try {
-      const res = await fetch(`http://localhost:5000/api/posts/${post.id}/comments`, {
+      const res = await fetch(`${API_URL}/api/posts/${post.id}/comments`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ user_id: loggedInUser.id, content: newComment })
@@ -220,7 +221,7 @@ function Community() {
 
   const fetchPosts = async () => {
     try {
-      const res = await fetch('http://localhost:5000/api/posts');
+      const res = await fetch(`${API_URL}/api/posts`);
       const data = await res.json();
       if (data && data.length > 0) setPosts(data);
       else setPosts([]);
@@ -247,7 +248,7 @@ function Community() {
       if (selectedFile) {
         const formData = new FormData();
         formData.append('post_image', selectedFile);
-        const uploadRes = await fetch('http://localhost:5000/api/upload/post', {
+        const uploadRes = await fetch(`${API_URL}/api/upload/post`, {
           method: 'POST',
           body: formData,
         });
@@ -257,7 +258,7 @@ function Community() {
         }
       }
 
-      const res = await fetch('http://localhost:5000/api/posts', {
+      const res = await fetch(`${API_URL}/api/posts`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ user_id: loggedInUser.id, content: newPostContent, location: newPostLocation, image_url: finalImageUrl }),
